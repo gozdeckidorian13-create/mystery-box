@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mystery Box</title>
+
+<style>
+body{
+    margin:0;
+    background:#111;
+    font-family:Arial,sans-serif;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+#box{
+    width:320px;
+    text-align:center;
+    background:#1d1d1d;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(255,215,0,.3);
+}
+
+button{
+    margin-top:20px;
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    background:gold;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#result{
+    margin-top:25px;
+    font-size:24px;
+    min-height:35px;
+}
+
+#animation{
+    margin-top:20px;
+    font-size:28px;
+    height:40px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="box">
+<h1>🎁 Mystery Box</h1>
+
+<div id="animation">📦</div>
+
+<button onclick="openBox()">OTWÓRZ</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const items=[
+"🟢 100 Coins",
+"🔵 500 Coins",
+"🟣 VIP",
+"🟠 Skin Premium",
+"🔴 LEGENDARNY DROP!"
+];
+
+function openBox(){
+
+const animation=document.getElementById("animation");
+const result=document.getElementById("result");
+
+result.innerHTML="";
+
+let i=0;
+
+const timer=setInterval(()=>{
+
+animation.innerHTML=items[Math.floor(Math.random()*items.length)];
+
+i++;
+
+if(i>20){
+
+clearInterval(timer);
+
+const prize=items[Math.floor(Math.random()*items.length)];
+
+animation.innerHTML="📦";
+
+result.innerHTML="🎉 Wygrałeś:<br><b>"+prize+"</b>";
+
+}
+
+},100);
+
+}
+
+</script>
+
+</body>
+</html>
