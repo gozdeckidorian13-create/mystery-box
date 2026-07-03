@@ -3,109 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Mystery Box</title>
 
-<style>
-body{
-    margin:0;
-    background:#111;
-    font-family:Arial,sans-serif;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
+<link rel="stylesheet" href="style.css">
 
-#box{
-    width:320px;
-    text-align:center;
-    background:#1d1d1d;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 0 30px rgba(255,215,0,.3);
-}
-
-button{
-    margin-top:20px;
-    padding:15px 30px;
-    font-size:20px;
-    border:none;
-    border-radius:10px;
-    background:gold;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-#result{
-    margin-top:25px;
-    font-size:24px;
-    min-height:35px;
-}
-
-#animation{
-    margin-top:20px;
-    font-size:28px;
-    height:40px;
-}
-</style>
 </head>
 
 <body>
 
-<div id="box">
+<div id="home">
+
 <h1>🎁 Mystery Box</h1>
 
-<div id="animation">📦</div>
+<p>Wybierz skrzynię</p>
 
-<button onclick="openBox()">OTWÓRZ</button>
+<div class="boxes">
 
-<div id="result"></div>
+<div class="box basic" onclick="openBox('basic')">
+<h2>📦 BASIC</h2>
+<p>30 przedmiotów</p>
+</div>
+
+<div class="box standard" onclick="openBox('standard')">
+<h2>📦 STANDARD</h2>
+<p>20 przedmiotów</p>
+</div>
+
+<div class="box epic" onclick="openBox('epic')">
+<h2>📦 EPIC</h2>
+<p>10 przedmiotów</p>
+</div>
 
 </div>
 
-<script>
+</div>
 
-const items=[
-"🟢 100 Coins",
-"🔵 500 Coins",
-"🟣 VIP",
-"🟠 Skin Premium",
-"🔴 LEGENDARNY DROP!"
-];
 
-function openBox(){
+<div id="boxPage" style="display:none;">
 
-const animation=document.getElementById("animation");
-const result=document.getElementById("result");
+<button onclick="backHome()">⬅ Powrót</button>
 
-result.innerHTML="";
+<h1 id="boxTitle"></h1>
 
-let i=0;
+<h2>Możliwe nagrody</h2>
 
-const timer=setInterval(()=>{
+<div id="dropList"></div>
 
-animation.innerHTML=items[Math.floor(Math.random()*items.length)];
+<br>
 
-i++;
+<button id="openBtn" onclick="startOpening()">
+OTWÓRZ
+</button>
 
-if(i>20){
+<div id="animation"></div>
 
-clearInterval(timer);
+<h2 id="result"></h2>
 
-const prize=items[Math.floor(Math.random()*items.length)];
+</div>
 
-animation.innerHTML="📦";
-
-result.innerHTML="🎉 Wygrałeś:<br><b>"+prize+"</b>";
-
-}
-
-},100);
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
